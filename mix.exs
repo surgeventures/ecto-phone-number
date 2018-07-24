@@ -49,7 +49,7 @@ defmodule EctoPhoneNumber.Mixfile do
       {:ecto, ">= 2.0.0"},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},
       {:excoveralls, "~> 0.7", only: :test},
-      {:ex_phone_number, github: "surgeventures/ex_phone_number", tag: "v0.1"},
+      {:ex_phone_number, github: "surgeventures/ex_phone_number_new", tag: "v1.0"},
     ]
   end
 
