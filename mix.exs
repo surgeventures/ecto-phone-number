@@ -3,7 +3,7 @@ defmodule EctoPhoneNumber.Mixfile do
 
   def project do
     [app: :ecto_phone_number,
-     version: "0.1.0",
+     version: "0.2.0",
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
@@ -49,7 +49,7 @@ defmodule EctoPhoneNumber.Mixfile do
       {:ecto, ">= 2.0.0"},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},
       {:excoveralls, "~> 0.7", only: :test},
-      {:ex_phone_number, github: "surgeventures/ex_phone_number_new", tag: "v1.0"},
+      {:ex_phone_number, "~> 0.2"},
     ]
   end
 
