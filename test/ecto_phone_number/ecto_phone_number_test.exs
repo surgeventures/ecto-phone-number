@@ -21,9 +21,9 @@ defmodule EctoPhoneNumberTest do
 
     test "inspects invalid phone numbers" do
       assert inspect(@phone_number_with_invalid_type) ==
-        "#EctoPhoneNumber<#{@phone_number_string_e164}>"
-      assert inspect(@phone_number_with_invalid_digits) ==
-        "#EctoPhoneNumber<48100000000>"
+               "#EctoPhoneNumber<#{@phone_number_string_e164}>"
+
+      assert inspect(@phone_number_with_invalid_digits) == "#EctoPhoneNumber<48100000000>"
     end
   end
 
@@ -33,7 +33,7 @@ defmodule EctoPhoneNumberTest do
     end
 
     test "interpolates invalid phone numbers in valid structs in strings" do
-      assert "Phone: #{@phone_number_with_invalid_digits}" == "Phone: +48 10 000 00 00"
+      assert "Phone: #{@phone_number_with_invalid_digits}" == "Phone: +48 100000000"
     end
 
     test "interpolates invalid phone number struct in strings" do
@@ -97,7 +97,7 @@ defmodule EctoPhoneNumberTest do
     end
 
     test "formats invalid numbers in valid struct" do
-      assert EctoPhoneNumber.format(@phone_number_with_invalid_digits) == "+48 10 000 00 00"
+      assert EctoPhoneNumber.format(@phone_number_with_invalid_digits) == "+48 100000000"
     end
 
     test "raises on invalid phone number structs" do
