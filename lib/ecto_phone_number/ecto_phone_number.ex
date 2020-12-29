@@ -26,6 +26,7 @@ defmodule EctoPhoneNumber do
   def type, do: :string
 
   def cast(phone_number = %__MODULE__{}), do: {:ok, phone_number}
+  def cast(integer) when is_integer(integer), do: Kernel.to_string(integer) |> cast()
 
   def cast(string) when is_binary(string) do
     normalized_string =
@@ -69,5 +70,13 @@ defmodule EctoPhoneNumber do
     else
       _ -> raise(ArgumentError, "Invalid phone number: #{inspect(e164)}")
     end
+  end
+
+  def embed_as(_format) do
+    :self
+  end
+
+  def equal?(term1, term2) do
+    cast(term1) == cast(term2)
   end
 end
