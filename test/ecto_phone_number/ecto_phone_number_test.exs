@@ -59,6 +59,10 @@ defmodule EctoPhoneNumberTest do
       assert EctoPhoneNumber.cast(@phone_number_string_e164) == {:ok, @phone_number}
     end
 
+    test "casts valid integers" do
+      assert EctoPhoneNumber.cast(@phone_number_e164) == {:ok, @phone_number}
+    end
+
     test "casts invalid strings" do
       assert EctoPhoneNumber.cast(@phone_number_string_with_invalid_delimiter) == :error
       assert EctoPhoneNumber.cast(@phone_number_string_with_invalid_digits) == :error
@@ -108,6 +112,28 @@ defmodule EctoPhoneNumberTest do
       assert_raise(ArgumentError, fn ->
         EctoPhoneNumber.format(@phone_number_with_invalid_type)
       end)
+    end
+  end
+
+  describe "equal?/1" do
+    test "equals itself" do
+      assert EctoPhoneNumber.equal?(@phone_number, @phone_number)
+    end
+
+    test "does not equals other" do
+      refute EctoPhoneNumber.equal?(@phone_number, "48600700811")
+    end
+
+    test "equals e164 integer" do
+      assert EctoPhoneNumber.equal?(@phone_number, @phone_number_e164)
+    end
+
+    test "equals e164 string" do
+      assert EctoPhoneNumber.equal?(@phone_number, to_string(@phone_number_e164))
+    end
+
+    test "does not equals nil" do
+      refute EctoPhoneNumber.equal?(@phone_number, nil)
     end
   end
 end
