@@ -1,19 +1,35 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/elixir:1.7.4
-    working_directory: ~/repo
-    steps:
-      # setup
-      - checkout
-      - run: mix local.hex --force
-      - run: mix local.rebar --force
-      - run: mix deps.get
+version: 2.1
 
-      # checks
-      - run: mix compile --warnings-as-errors
-      - run: mix format --check-formatted
-      - run: mix credo
-      - run: mix docs
-      - run: mix test
+orbs:
+  elixir-orb: fresha/elixir-orb@0.0
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - elixir-orb/test
+      - elixir-orb/static-check:
+          dialyzer: false
+          context: Hex
+      - hold-for-dev-publish:
+          type: approval
+          requires:
+            - elixir-orb/test
+            - elixir-orb/static-check
+          filters:
+            branches:
+              ignore:
+                - master
+      - elixir-orb/dev-publish:
+          context: Hex
+          requires:
+            - hold-for-dev-publish
+      - elixir-orb/deploy:
+          context: Hex
+          requires:
+            - elixir-orb/test
+            - elixir-orb/static-check
+          filters:
+            branches:
+              only:
+                - master
