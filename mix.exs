@@ -8,7 +8,7 @@ defmodule EctoPhoneNumber.Mixfile do
   def project do
     [
       app: :ecto_phone_number,
-      version: "0.3.4",
+      version: "0.3.5",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
