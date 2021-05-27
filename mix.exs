@@ -37,6 +37,7 @@ defmodule EctoPhoneNumber.Mixfile do
   defp deps do
     [
       {:credo, "~> 1.0", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto, ">= 2.0.0"},
       {:ex_doc, "~> 0.24.2", only: :dev, runtime: false},
       {:ex_phone_number, "~> 0.2.1"}
