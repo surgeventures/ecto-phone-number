@@ -4,6 +4,7 @@ defmodule EctoPhoneNumber do
   """
 
   @behaviour Ecto.Type
+  @type t :: %__MODULE__{}
 
   defstruct [:e164]
 
@@ -23,8 +24,10 @@ defmodule EctoPhoneNumber do
     end
   end
 
+  @spec type :: :string
   def type, do: :string
 
+  @spec cast(any) :: {:ok, __MODULE__.t() | nil} | :error
   def cast(phone_number = %__MODULE__{}), do: {:ok, phone_number}
   def cast(integer) when is_integer(integer), do: Kernel.to_string(integer) |> cast()
 
@@ -48,6 +51,7 @@ defmodule EctoPhoneNumber do
   def cast(nil), do: {:ok, nil}
   def cast(_), do: :error
 
+  @spec load(binary) :: :error | {:ok, __MODULE__.t()}
   def load(e164_string) when is_binary(e164_string) do
     case Integer.parse(e164_string) do
       {e164_integer, ""} ->
@@ -58,9 +62,11 @@ defmodule EctoPhoneNumber do
     end
   end
 
+  @spec dump(any) :: :error | {:ok, binary}
   def dump(%__MODULE__{e164: e164}) when is_integer(e164), do: {:ok, Integer.to_string(e164)}
   def dump(_), do: :error
 
+  @spec format(__MODULE__.t() | nil, atom) :: binary
   def format(nil), do: nil
 
   def format(%__MODULE__{e164: e164}, format \\ :international) do
@@ -72,10 +78,12 @@ defmodule EctoPhoneNumber do
     end
   end
 
+  @spec embed_as(any) :: :self
   def embed_as(_format) do
     :self
   end
 
+  @spec equal?(any, any) :: boolean
   def equal?(term1, term2) do
     cast(term1) == cast(term2)
   end
