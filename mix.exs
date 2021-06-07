@@ -13,6 +13,9 @@ defmodule EctoPhoneNumber.Mixfile do
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
       deps: deps(),
       name: @name,
       description: @description,
