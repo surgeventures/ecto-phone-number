@@ -1,14 +1,13 @@
 version: 2.1
 
 orbs:
-  elixir-orb: fresha/elixir-orb@0.1
+  elixir-orb: fresha/elixir-orb@0.0
 
 workflows:
   version: 2
   ci:
     jobs:
-      - elixir-orb/test:
-          context: Hex
+      - elixir-orb/test
       - elixir-orb/static-check:
           dialyzer: true
           context: Hex
