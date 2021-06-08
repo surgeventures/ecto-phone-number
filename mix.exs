@@ -8,11 +8,14 @@ defmodule EctoPhoneNumber.Mixfile do
   def project do
     [
       app: :ecto_phone_number,
-      version: "0.3.5",
+      version: "0.4.0",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
       deps: deps(),
       name: @name,
       description: @description,
@@ -40,7 +43,7 @@ defmodule EctoPhoneNumber.Mixfile do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto, ">= 2.0.0"},
       {:ex_doc, "~> 0.24.2", only: :dev, runtime: false},
-      {:ex_phone_number, "~> 0.2.1"}
+      {:ex_phone_number_fresha, "~> 0.2.3"}
     ]
   end
 end
