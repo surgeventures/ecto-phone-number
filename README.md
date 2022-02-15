@@ -18,7 +18,7 @@ Add `ecto_phone_number` as a dependency to your project in `mix.exs`:
 
 ```elixir
 defp deps do
-  [{:ecto_phone_number, "~> 0.5.0"}]
+  [{:ecto_phone_number, "~> 0.4"}]
 end
 ```
 
