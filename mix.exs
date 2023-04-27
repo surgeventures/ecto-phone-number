@@ -8,7 +8,7 @@ defmodule EctoPhoneNumber.Mixfile do
   def project do
     [
       app: :ecto_phone_number,
-      version: "0.4.3",
+      version: "0.4.4",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
@@ -43,7 +43,7 @@ defmodule EctoPhoneNumber.Mixfile do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.24.2", only: :dev, runtime: false},
       {:ecto, "~> 2.0 or ~> 3.0"},
-      {:ex_phone_number, "~> 0.3", hex: :ex_phone_number_fresha}
+      {:ex_phone_number, "~> 0.4"}
     ]
   end
 end
